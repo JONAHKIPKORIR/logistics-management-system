@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
-// import './index.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { AUTH_API } from '../apiConfig'; // Import the endpoint
 
-const Login = () => {
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
+const Login = ({ onLogin }) => {
+    const [formData, setFormData] = useState({ email: '', password: '' });
+    const navigate = useNavigate(); // Initialize useNavigate hook
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,10 +16,12 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://silver-broccoli-757gpxw7gpqfpvqq-5000.app.github.dev/api/auth/login', formData);
+            const response = await axios.post(`${AUTH_API}/login`, formData, { withCredentials: true });
             toast.success('Login successful!');
-            // Store token and redirect if needed
             localStorage.setItem('token', response.data.token);
+
+            onLogin(); // Call onLogin to update isLoggedIn in App.js
+            navigate('/dashboard'); // Redirect to the Dashboard
         } catch (err) {
             if (err.response) {
                 toast.error(err.response.data.message || 'Invalid credentials');

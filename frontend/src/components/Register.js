@@ -3,6 +3,9 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
+import { AUTH_API } from '../apiConfig'; // Import the endpoint
+
+
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -20,7 +23,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://silver-broccoli-757gpxw7gpqfpvqq-5000.app.github.dev/api/auth/register', formData);
+            const response = await axios.post(`${AUTH_API}/register`, formData);
             toast.success('Registration successful!'); // Success notification
             console.log(response.data); // Log the response 
         } catch (error) {

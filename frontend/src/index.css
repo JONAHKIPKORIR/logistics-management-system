@@ -181,3 +181,51 @@ body {
   margin-bottom: 10px;
   text-align: center;
 }
+
+
+/*  Dashboard*/
+
+
+.dashboard {
+  padding: 20px;
+  background-color: #f4f6f8;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.dashboard-metrics {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.metric {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 150px;
+}
+
+.metric h3 {
+  color: #666;
+  font-size: 1.1em;
+}
+
+.metric p {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
